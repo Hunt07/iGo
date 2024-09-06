@@ -191,7 +191,7 @@ public class HomePage extends JFrame {
         add(backgroundLabel);
     }
 
-    private boolean authenticate(String username, String password) {
+    private boolean  authenticate(String username, String password) {
         // Implementing authentication logic here
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {

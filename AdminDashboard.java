@@ -268,16 +268,17 @@ public class AdminDashboard extends JFrame
 
     // Add action listener to the create button
     createButton.addActionListener(e -> {
-        String transportID = (String) transportIDCombo.getSelectedItem();
-        String scheduleID = (String) scheduleIDCombo.getSelectedItem();
-        String transportType = (String) transportTypeCombo.getSelectedItem();
-        String departureTime = departureField.getText();
-        String arrivalTime = arrivalField.getText();
-        String route = routeField.getText();
+        String transportID = JOptionPane.showInputDialog("Enter Transport ID:");
+        String scheduleID = JOptionPane.showInputDialog("Enter Schedule ID:");
+        String transportType = JOptionPane.showInputDialog("Enter Transport Type:");
+        String departureTime = JOptionPane.showInputDialog("Enter Departure Time:");
+        String arrivalTime = JOptionPane.showInputDialog("Enter Arrival Time:");
+        String route = JOptionPane.showInputDialog("Enter Route:");
         // Add the new schedule to the table model
         scheduleTableModel.addRow(new Object[]{transportID, scheduleID, transportType, departureTime, arrivalTime, route});
         JOptionPane.showMessageDialog(panel, "Schedule created successfully!");
     });
+    panel.add(createButton, BorderLayout.SOUTH);
 
     return panel;
 }
@@ -292,7 +293,7 @@ private JPanel updateSchedulePanel() {
     titleLabel.setBounds(250, 20, 200, 30);
     panel.add(titleLabel);
 
-    JLabel scheduleIDLabel = new JLabel("Schedule ID:");
+   /*  JLabel scheduleIDLabel = new JLabel("Schedule ID:");
     scheduleIDLabel.setFont(STANDARD_FONT);
     scheduleIDLabel.setBounds(100, 80, 200, 30);
     panel.add(scheduleIDLabel);
@@ -315,12 +316,12 @@ private JPanel updateSchedulePanel() {
     JLabel newArrivalLabel = new JLabel("New Arrival Time:");
     newArrivalLabel.setFont(STANDARD_FONT);
     newArrivalLabel.setBounds(100, 180, 200, 30);
-    panel.add(newArrivalLabel);
+    panel.add(newArrivalLabel);*/
 
-    JTextField newArrivalField = new JTextField();
+    /*JTextField newArrivalField = new JTextField();
     newArrivalField.setFont(STANDARD_FONT);
     newArrivalField.setBounds(280, 180, 250, 30);
-    panel.add(newArrivalField);
+    panel.add(newArrivalField);*/
 
     JButton updateButton = new JButton("Update");
     updateButton.setFont(BOLD_FONT);
@@ -332,7 +333,7 @@ private JPanel updateSchedulePanel() {
     titleLabel2.setBounds(250, 300, 200, 30);
     panel.add(titleLabel2);
 
-    JLabel scheduleIDLabel2 = new JLabel("Schedule ID:");
+   /* JLabel scheduleIDLabel2 = new JLabel("Schedule ID:");
     scheduleIDLabel2.setFont(STANDARD_FONT);
     scheduleIDLabel2.setBounds(100, 350, 140, 30);
     panel.add(scheduleIDLabel2);
@@ -340,7 +341,7 @@ private JPanel updateSchedulePanel() {
     JComboBox<String> scheduleIDCombo2 = new JComboBox<>(new String[]{"TB001", "TB002"});
     scheduleIDCombo2.setFont(STANDARD_FONT);
     scheduleIDCombo2.setBounds(280, 350, 250, 30);
-    panel.add(scheduleIDCombo2);
+    panel.add(scheduleIDCombo2);*/
 
     JButton deleteButton = new JButton("Delete");
     deleteButton.setFont(BOLD_FONT);
@@ -355,43 +356,58 @@ private JPanel updateSchedulePanel() {
         {"BS003", "TB003", "Bus", "11:20", "12:50"},
         {"BS004", "TB004", "Bus", "14:15", "16:00"},
     };
-    JTable table = new JTable(data, columns);
+    scheduleTableModel = new DefaultTableModel(data, columns);
+    JTable table = new JTable(scheduleTableModel);
     JScrollPane scrollPane = new JScrollPane(table);
     scrollPane.setBounds(30, 450, 610, 200);
     panel.add(scrollPane);
 
     // Add action listener to the update button
     updateButton.addActionListener(e -> {
-        String scheduleID = (String) scheduleIDCombo.getSelectedItem();
-        String newDepartureTime = newDepartureField.getText();
-        String newArrivalTime = newArrivalField.getText();
-        // Add logic to update the schedule
-        // For example, update the schedule in the table
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            if (model.getValueAt(i, 0).equals(scheduleID)) {
-                model.setValueAt(newDepartureTime, i, 2);
-                model.setValueAt(newArrivalTime, i, 3);
+        String scheduleID = JOptionPane.showInputDialog("Enter Schedule ID to update:");
+        String newDepartureTime = JOptionPane.showInputDialog("Enter new Departure Time:");
+        String newArrivalTime = JOptionPane.showInputDialog("Enter new Arrival Time:");
+        // Update the schedule in the table with the new departure and arrival times
+        for (int i = 0; i < scheduleTableModel.getRowCount(); i++) {
+            if (scheduleTableModel.getValueAt(i, 0).equals(scheduleID)) {
+                scheduleTableModel.setValueAt(newDepartureTime, i, 2); // Assuming column 2 is Departure Time
+                scheduleTableModel.setValueAt(newArrivalTime, i, 3); // Assuming column 3 is Arrival Time
                 break;
             }
         }
         JOptionPane.showMessageDialog(panel, "Schedule updated successfully!");
     });
+    panel.add(updateButton, BorderLayout.SOUTH);
 
     // Add action listener to the delete button
     deleteButton.addActionListener(e -> {
-        String scheduleID = (String) scheduleIDCombo2.getSelectedItem();
-        // Add logic to delete the schedule
-        // For example, remove the schedule from the table
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            if (model.getValueAt(i, 0).equals(scheduleID)) {
-                model.removeRow(i);
-                break;
+        String scheduleID = JOptionPane.showInputDialog("Enter Schedule ID to delete:");
+        if (scheduleID == null) return; // If the user cancels the input dialog
+        if (scheduleID.isEmpty()) {
+            JOptionPane.showMessageDialog(panel, "Please enter a Schedule ID to delete!");
+            return;
+        }
+        // if scheduleID not found
+        
+
+        // Remove the schedule from the table
+        boolean found = false;
+        for (int i = 0; i < scheduleTableModel.getRowCount(); i++) {
+            if (scheduleTableModel.getValueAt(i, 0).equals(scheduleID)) {
+            scheduleTableModel.removeRow(i);
+            found = true;
+            break;
             }
         }
-        JOptionPane.showMessageDialog(panel, "Schedule deleted successfully!");
+        if (!found) {
+            JOptionPane.showMessageDialog(panel, "Schedule ID not found!");
+        }
+        if (found) {
+            JOptionPane.showMessageDialog(panel, "Schedule deleted successfully!");
+        }
+      
     });
+    panel.add(deleteButton, BorderLayout.SOUTH);
 
     return panel;
 }

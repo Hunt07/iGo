@@ -10,7 +10,7 @@ public class App
         loading load = new loading();
 
         // Set up a timer to switch to the home page after 5 seconds
-        Timer timer = new Timer(3000, new ActionListener() {
+        Timer timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Close the loading frame
