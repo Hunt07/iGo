@@ -1,9 +1,9 @@
-# 🚍 Public Scheduling System UI
+# 🚍 iGo
 
 ## 1. Introduction 📚
 
 ### Project Overview
-The **Public Scheduling System UI** project provides a user-friendly interface for managing and interacting with public transportation schedules, including both buses and trains. This project is part of a collaborative effort, where my focus was on developing a responsive and intuitive UI. The next step involves integrating the backend to make this system fully functional.
+The **iGo** project provides a user-friendly interface for managing and interacting with public transportation schedules, including both buses and trains. This project is part of a collaborative effort, where my focus was on developing a responsive and intuitive UI. The next step involves integrating the backend to make this system fully functional.
 
 ### Objective
 The goal is to create a comprehensive, secure, and scalable system tailored to public transportation needs. The UI is designed to be flexible, allowing for easy backend integration and providing a seamless user experience.

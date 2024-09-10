@@ -1,16 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
-/**
- * Create 4 panels 
- * panel0: logo with title 
- * panel1: selecting seats
- * panel2: reciept and payment button offline or online 
- * panel3: logout and quit button 
- */
+//~ Talha
 
 public class booking extends JFrame
 {
-    // Define a consistent font style
     private static final Font STANDARD_FONT = new Font("Aharoni", Font.PLAIN, 15);
     private static final Font BOLD_FONT = new Font("Aharoni", Font.BOLD, 15);
 
@@ -22,7 +15,7 @@ public class booking extends JFrame
     setLayout(null);
     setLocationRelativeTo(null); 
 
- // Add a background image
+ // background image
  ImageIcon originalIcon = new ImageIcon("./py_bg.jpg");
  Image scaledImage = originalIcon.getImage().getScaledInstance(1000, 850, Image.SCALE_SMOOTH);
  ImageIcon scaledIcon = new ImageIcon(scaledImage);
@@ -125,13 +118,13 @@ public class booking extends JFrame
     confirmJRadioButton.setBounds(450, 340, 200, 30 );
     panel1.add(confirmJRadioButton);
 
-    //add a panel2 for reciept display 
+    //panel2 for reciept display ~ Talha
     JPanel panel2 = new JPanel();
     panel2.setBounds(620, 110, 350, 530);
     panel2.setLayout(new BorderLayout());
 
 
-    // Create a JTextArea for displaying the receipt
+    // TextArea for displaying the receipt ~ Talha
     JTextArea receiptTextArea = new JTextArea();
     receiptTextArea.setEditable(false); 
     receiptTextArea.setLineWrap(true); 
@@ -139,7 +132,7 @@ public class booking extends JFrame
 
     receiptTextArea.setFont(BOLD_FONT);
 
-    // A default text
+    // Receipt text ~ Talha
     String receiptText = "**************************************\n"
     + "*            RECEIPT                 *\n"
     + "**************************************\n\n"
@@ -168,7 +161,7 @@ public class booking extends JFrame
     panel2.add(scrollPane, BorderLayout.CENTER);
 
 
-    //Add a penel for buttons payment option
+    // penel for buttons payment option
     JPanel panel3 = new JPanel();
     panel3.setBounds(10, 480, 600, 160);
     panel3.setLayout(null);
@@ -186,7 +179,7 @@ public class booking extends JFrame
     paymeButton2.setBounds(200, 105, 150, 50);
     panel3.add(paymeButton2);
 
-    //add buttons "Logout" and "quit"
+    // buttons "Logout" and "quit"
     JButton logoutButton = new JButton("Logout");
     logoutButton.setFont(BOLD_FONT);
     logoutButton.setBounds(350, 750, 140, 45);
@@ -194,10 +187,10 @@ public class booking extends JFrame
     quitButton.setFont(BOLD_FONT);
     quitButton.setBounds(510, 750, 140, 45);
 
-    // Quit button functionality
+    // Quit button 
     quitButton.addActionListener(e -> System.exit(0));
 
-    // logout button functionality
+    // logout button 
     logoutButton.addActionListener(e -> {
         new HomePage().setVisible(true);
         dispose(); // Close the current window

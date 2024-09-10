@@ -4,24 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.border.BevelBorder;
 
-/**
- * Create 5 panels for home page UI
- * panel0 for logo with text Public Scheduling Transportation System"
- * panel1 for search bar and buttons and a label with text "Search"
- * panel2 for train schedule table with columns: Train Number, Line, Departure Time
- * panel3 for bus schedule table with columns: Bus Number, Line, Departure Time
- * panel4 for login with text "Login" and text fields with text "Username" and "Password" and buttons "Login" and "Register" and "Quit"
- */
 
+ //~ Talha
 public class HomePage extends JFrame {
     private List<User> users;
 
     public HomePage() {
-        // Initialize the list of users
+        // list of users
         users = new ArrayList<>();
-        users.add(new User("admin", "admin", true)); // Admin user
-        users.add(new User("user1", "password1", false)); // Regular user
-        users.add(new User("user2", "password2", false)); // Regular user
+        users.add(new User("admin", "admin", true)); 
+        users.add(new User("user1", "password1", false)); 
+        users.add(new User("user2", "password2", false)); 
 
         setTitle("Home");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,9 +24,9 @@ public class HomePage extends JFrame {
         setLocationRelativeTo(null);
 
         // Add a background image
-        ImageIcon originalIcon = new ImageIcon("/Users/majid/Desktop/OOP /FinalProjectGP/ProjectUI/ProjectOOP/src/bg.png");
+        ImageIcon originalIcon = new ImageIcon("./bg.png");
 
-        // Scale the image to fit the frame size
+        // Scaling the image
         Image scaledImage = originalIcon.getImage().getScaledInstance(1000, 850, Image.SCALE_SMOOTH);
         ImageIcon scaledIcon = new ImageIcon(scaledImage);
         JLabel backgroundLabel = new JLabel(scaledIcon);
@@ -152,10 +145,10 @@ public class HomePage extends JFrame {
         panel4.add(registerButton);
         panel4.add(quitButton);
 
-        // Quit button functionality
+        // Quit button 
         quitButton.addActionListener(e -> System.exit(0));
 
-        // Add action listener for login button
+        //login button
         loginButton.addActionListener(e -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
@@ -172,7 +165,7 @@ public class HomePage extends JFrame {
             }
         });
 
-        // Add action listener for register button
+        //register button
         registerButton.addActionListener(e -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
@@ -192,7 +185,7 @@ public class HomePage extends JFrame {
     }
 
     private boolean  authenticate(String username, String password) {
-        // Implementing authentication logic here
+        // authentication logic ~ Harris
         for (User user : users) {
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return true;
@@ -202,7 +195,7 @@ public class HomePage extends JFrame {
     }
 
     private boolean isAdmin(String username) {
-        // Implement logic to check if the user is an admin
+        //  logic to check if the user is an admin
         for (User user : users) {
             if (user.getUsername().equals(username) && user.isAdmin()) {
                 return true;
@@ -212,7 +205,7 @@ public class HomePage extends JFrame {
     }
 
     private boolean register(String username, String password) {
-        // Check if the username already exists
+        // if the username already exists
         for (User user : users) {
             if (user.getUsername().equals(username)) {
                 return false; // Username already exists

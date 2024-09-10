@@ -6,11 +6,11 @@ import java.awt.event.ActionListener;
 public class App
 {
     public static void main(String[] args) {
-        // Display the loading page
+        // loading page
         loading load = new loading();
 
         // Set up a timer to switch to the home page after 5 seconds
-        Timer timer = new Timer(100, new ActionListener() {
+        Timer timer = new Timer(4000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Close the loading frame
@@ -20,7 +20,6 @@ public class App
                 homePage.setVisible(true);
             }
         });
-        // Start the timer (it will go off once after 5 seconds)
         timer.setRepeats(false);
         timer.start();
     }

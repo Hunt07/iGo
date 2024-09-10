@@ -13,7 +13,7 @@ public class loading extends JFrame
         setLocationRelativeTo(null);
 
         //add a background image 
-        ImageIcon originalIcon = new ImageIcon("/Users/majid/Desktop/OOP /FinalProjectGP/ProjectUI/ProjectOOP/src/bg.png");
+        ImageIcon originalIcon = new ImageIcon("./bg.png");
 
         // Scale the image to fit the frame size
         Image scaledImage = originalIcon.getImage().getScaledInstance(1000, 850, Image.SCALE_SMOOTH);
